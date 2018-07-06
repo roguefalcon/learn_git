@@ -1,29 +1,10 @@
 #!/usr/bin/python3
 
-from datetime import date
+from flask import Flask
+app = Flask(__name__)
 
-# Print the date header
-print("===============================")
-print("|  Date Printer, 2018         |")
-print("===============================")
+@app.route("/")
+def hello():
+    return "Hello World!"
 
-today = str(date.today())
-print("Today's date is", today)
-
-
-# We want to print the Fibonacci Sequence
-# 0, 1, 1, 2, 3, 5, 8, etc.
-def F():
-    a, b = 0, 1
-    while a <= 100:
-        yield a
-        a, b = b, a + b
-
-
-def print_fibonacci():
-    for cur in F():
-        print(str(cur) + ',', end='')
-
-
-print_fibonacci()
-print('')  # Print the newline
+app.run(debug=False, host='0.0.0.0', port=5000, threaded=True)
